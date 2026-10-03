@@ -36,7 +36,7 @@ cd wechat-style-extractor-py
 # 1. 看有哪些主题
 python3 gzh.py list
 
-# 2. 排一篇文章（默认用老板自有版式：绿竖条 + 677px 白底 + 深色代码块）
+# 2. 排一篇文章（默认用自带版式：绿竖条 + 677px 白底 + 深色代码块）
 python3 gzh.py build 文章.md --title "文章标题"
 
 # 3. 换个风格：从一篇参考文章学来的主题
@@ -157,32 +157,37 @@ _internal/                    跨 agent 项目记忆
 
 ---
 
-## ⚠️ 来源与协议（2026-10-04 已决策：提取层自写清干净）
+## 来源说明（公开树的构成，2026-10-04）
 
 **公开树里的东西全部为本项目原创**：`README.md`、`gzh.py`、`gzh_extract.py`、`style_to_theme.py`、
 `wechat_render.py`、`validate_gzh_html.py`、`desensitize.py`、`components/`、
 `themes-public/`、`my-styles-public/`、`example-article*`。没有任何一行来自外部项目。
 
-**原本的提取脚本**（`wechat_style_extractor.py`、`server.py`、`compare_styles.py`、`batch_polish.py`、
-`wechat_polisher.py` 及若干 shell 脚本）来自网络，**当时目录里没有它们的 LICENSE 与出处**。
-2026-10-04 用四组代码特征（`wechat_style_extractor`/`is_accent_color`/`pixel_value`/`build_result`）
-做 GitHub 公开代码搜索，没命中同源仓库；同名的 `sennkuwu/wechat-style-extractor` 是 Next.js + TypeScript 版，
-`IT-Althusser/wechat-writer-skills` 的 `learn_theme.py` 是 BeautifulSoup + YAML 版，都不是这一份 Python 版。
+**项目早期有一批提取脚本**（`wechat_style_extractor.py`、`server.py`、`compare_styles.py`、
+`batch_polish.py`、`wechat_polisher.py` 及若干 shell 脚本），来自网络，但**当时目录里没有它们的
+LICENSE 与出处声明**。查过一轮：用四组代码特征（`wechat_style_extractor`/`is_accent_color`/
+`pixel_value`/`build_result`）做公开代码搜索没有命中同源仓库；看着像的两个都不是同一份
+（`sennkuwu/wechat-style-extractor` 是 Next.js + TypeScript 版，
+`IT-Althusser/wechat-writer-skills` 的 `learn_theme.py` 是 BeautifulSoup + YAML 版）。
 
-没标注许可证的代码，法律上默认「保留所有权利」。owner 在「溯源补署名」和「自写替换」之间选了后者：
-`gzh_extract.py` 是完整重写的提取层（纯标准库），**输出结构与旧版同构**，所以已有的
-`my-styles/*.json` 一行都不用改就能接着用。原件连同全部原始文件封存在 `_legacy/`，**不进公开树**，
-溯源线索写在 `_legacy/README.md` 里。
+没标注许可证的代码，法律上默认「保留所有权利」——没法拿去开源。所以处理方式是：
 
-### 哪些目录不公开
+- 提取层重新自写了一遍（`gzh_extract.py`，纯标准库），**输出字段与旧版同构**，
+  已有的 `my-styles/*.json` 一行都不用改就能接着用；
+- 原件连同全部 21 个原始文件封存在 `_legacy/`，**不进公开树**，溯源线索写在 `_legacy/README.md`；
+- git 历史也清干净了（旧的那次 init commit 里满是原件，换了个干净 root commit）。
 
-| 目录 | 装的是什么 | 处理 |
+如果你也在整理类似的脚本，这是条可走的路：来源不明的片段别硬留，重写一遍成本比补 license 低。
+
+### 仓库里为什么有两套主题目录
+
+| 目录 | 内容 | 去向 |
 |---|---|---|
-| `_legacy/` | 来源不明的原件 + 溯源档案 | 已归档，`.gitignore` 排除 |
-| `_internal/` | 跨 agent 的项目记忆 | 同上 |
-| `themes/`、`my-styles/` | 带原文标题 / 公众号名 / 文章链接 | 同上 |
+| `themes/`、`my-styles/` | 从参考文章提取的原始参数，带原文标题 / 公众号名 / 文章链接 | 留在本地，**不进公开树** |
+| `themes-public/`、`my-styles-public/` | 同一批参数去掉身份信息后的版本，色值与排版参数不变 | 进公开树 |
 
-原文照留——自己日后想回头看「当初那篇到底长什么样」时还得用。但另有脱敏版进公开树。
+`desensitize.py` 做的就是这个：`python3 gzh.py public` 重新生成并顺手体检一遍。
+以后自己加新主题，跑一下就有可公开的版本，不用手改。
 
 ### 脱敏怎么做的
 
