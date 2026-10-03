@@ -1,0 +1,17 @@
+# ─── 内部资产：不进公开树 ────────────────────────────────────
+# _legacy/     来源不明的原件（见 _legacy/README.md），自写提取层之前的那套代码
+# _internal/   跨 agent 的 SSOT 记忆文件，含参考文章的原文标题与链接
+# themes/      带原文身份信息的主题（原文标题/公众号名/文章链接）
+# my-styles/   带原文身份信息的排版参数存档，同上
+#
+# 公开版在 themes-public/ 与 my-styles-public/，由 desensitize.py 生成，
+# 每次加完主题跑 `python3 gzh.py public` 重生成 + 体检。
+
+_legacy/
+_internal/
+themes/
+my-styles/
+
+# ─── 本地产物 ───────────────────────────────────────────────
+*.log
+.DS_Store

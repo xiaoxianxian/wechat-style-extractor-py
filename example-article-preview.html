@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>公众号排版示例</title>
+<style>
+  body { margin:0; padding:24px 12px 60px; background:#EDEDED; font-family:-apple-system,'PingFang SC',sans-serif; }
+  .bar { position:sticky; top:0; z-index:9; background:#fff; border:1px solid #DCDCDC;
+          border-radius:8px; padding:12px 14px; margin:0 auto 18px; max-width:677px;
+          display:flex; gap:10px; align-items:center; box-shadow:0 1px 4px rgba(0,0,0,.06); }
+  .bar button { border:0; border-radius:6px; background:#1F8A5C; color:#fff; font-size:14px;
+                 padding:8px 16px; cursor:pointer; }
+  .bar button.ghost { background:#F2F4F3; color:#3A3A3A; }
+  .bar span.tip { font-size:12px; color:#8A8A8A; }
+  .paper { max-width:677px; margin:0 auto; background:#fff; border-radius:8px;
+            padding:28px 20px; box-sizing:border-box; }
+  @media (max-width:700px) { .paper { padding:18px 14px; } }
+</style>
+</head>
+<body>
+<div class="bar">
+  <button id="copyBtn" type="button">复制到公众号</button>
+  <button id="srcBtn" class="ghost" type="button">看源码</button>
+  <span class="tip">复制后到公众号编辑器粘贴即可，记得检查图片与表格</span>
+</div>
+<div class="paper" id="paper"><section style="max-width:677px;width:100%;margin:0 auto;padding:2px 0;font-size:16px;line-height:1.75;letter-spacing:0.01em;color:#2B2B2B;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue',sans-serif;background-color:#FFFFFF;text-align:left;">
+<h1 style="font-size:22px;font-weight:700;color:#1A1A1A;line-height:1.45;margin:34px 0 16px;letter-spacing:0.02em;text-align:center;"><span style="font-size:22px;font-weight:700;color:#1A1A1A;line-height:1.45;margin:34px 0 16px;letter-spacing:0.02em;text-align:center;">测试标题：本地排版三段闭环</span></h1>
+<p style="font-size:16px;color:#2B2B2B;line-height:1.75;letter-spacing:0.01em;margin:0 0 18px;text-align:justify;"><span style="font-size:16px;color:#2B2B2B;line-height:1.75;letter-spacing:0.01em;margin:0 0 18px;text-align:justify;">这是第一段正文，含 <span style="font-weight:700;color:#1A1A1A;">加粗</span> 与 <span style="font-style:italic;color:#1F8A5C;">斜体</span> 与 <code style="font-family:'SFMono-Regular',Menlo,Consolas,monospace;font-size:14px;padding:1px 5px;border-radius:3px;background-color:#F0F3F1;color:#B5543A;"><span style="font-family:'SFMono-Regular',Menlo,Consolas,monospace;font-size:14px;padding:1px 5px;border-radius:3px;background-color:#F0F3F1;color:#B5543A;">inline_code</span></code> 三种行内标记。</span></p>
+<h2 style="font-size:19px;font-weight:700;color:#1F8A5C;line-height:1.5;margin:32px 0 14px;letter-spacing:0.02em;竖条用左侧 border-left:4px solid #1F8A5C;padding-left:12px;"><span style="font-size:19px;font-weight:700;color:#1F8A5C;line-height:1.5;margin:32px 0 14px;letter-spacing:0.02em;竖条用左侧 border-left:4px solid #1F8A5C;padding-left:12px;">一、绿色竖条 H2</span></h2>
+<p style="font-size:16px;color:#2B2B2B;line-height:1.75;letter-spacing:0.01em;margin:0 0 18px;text-align:justify;"><span style="font-size:16px;color:#2B2B2B;line-height:1.75;letter-spacing:0.01em;margin:0 0 18px;text-align:justify;">这一段用来确认竖条渲染正确。</span></p>
+<h3 style="font-size:16px;font-weight:700;color:#1A1A1A;line-height:1.55;margin:26px 0 10px;letter-spacing:0.01em;左侧 3px 竖条：border-left:3px solid #D9E5DF;padding-left:10px;"><span style="font-size:16px;font-weight:700;color:#1A1A1A;line-height:1.55;margin:26px 0 10px;letter-spacing:0.01em;左侧 3px 竖条：border-left:3px solid #D9E5DF;padding-left:10px;">三级标题</span></h3>
+<p style="font-size:16px;color:#2B2B2B;line-height:1.75;letter-spacing:0.01em;margin:0 0 18px;text-align:justify;"><span style="font-size:16px;color:#2B2B2B;line-height:1.75;letter-spacing:0.01em;margin:0 0 18px;text-align:justify;">正文段落，中文弯引号测试&quot;直引号&quot;与&#x27;单引号&#x27;。</span></p>
+<ul style="margin:14px 0 18px;padding-left:22px;list-style-type:disc;"><li style="font-size:16px;color:#2B2B2B;line-height:1.75;margin:0 0 8px;text-align:justify;"><span style="font-size:16px;color:#2B2B2B;line-height:1.75;margin:0 0 8px;text-align:justify;">列表项一</span></li><li style="font-size:16px;color:#2B2B2B;line-height:1.75;margin:0 0 8px;text-align:justify;"><span style="font-size:16px;color:#2B2B2B;line-height:1.75;margin:0 0 8px;text-align:justify;">列表项二</span></li></ul>
+<ol style="margin:14px 0 18px;padding-left:24px;list-style-type:decimal;"><li style="font-size:16px;color:#2B2B2B;line-height:1.75;margin:0 0 8px;text-align:justify;"><span style="font-size:16px;color:#2B2B2B;line-height:1.75;margin:0 0 8px;text-align:justify;">有序项一</span></li><li style="font-size:16px;color:#2B2B2B;line-height:1.75;margin:0 0 8px;text-align:justify;"><span style="font-size:16px;color:#2B2B2B;line-height:1.75;margin:0 0 8px;text-align:justify;">有序项二</span></li></ol>
+<blockquote style="font-size:15px;color:#5A5A5A;line-height:1.72;margin:20px 0;padding:12px 14px;background-color:#F5F8F6;border-radius:4px;border-left:4px solid #1F8A5C;"><span style="font-size:15px;color:#5A5A5A;line-height:1.72;margin:20px 0;padding:12px 14px;background-color:#F5F8F6;border-radius:4px;border-left:4px solid #1F8A5C;">引用块测试，用来放别人的话或结论。</span></blockquote>
+<pre style="margin:20px 0;padding:14px 16px;background-color:#1E1E1E;border-radius:6px;overflow-x:auto;font-family:'SFMono-Regular',Menlo,Consolas,monospace;font-size:13px;line-height:1.65;color:#E6E6E6;text-align:left;"><code style="display:inline-block;min-width:100%;white-space:pre;word-break:break-all;"><span style="display:inline-block;min-width:100%;white-space:pre;word-break:break-all;">cd ~/Documents/AI项目/wechat-style-extractor-py
+python3 wechat_render.py 输入.md --preview</span></code></pre>
+<img src="https://example.com/a.png" alt="测试图" style="display:block;width:100%;height:auto;margin:18px auto;border-radius:4px;" />
+<p style="font-size:13px;color:#8A8A8A;line-height:1.6;margin:-8px 0 20px;text-align:center;"><span style="font-size:13px;color:#8A8A8A;line-height:1.6;margin:-8px 0 20px;text-align:center;">测试图</span></p>
+<hr style="border:none;border-top:1px solid #E4E8E6;margin:30px 0;" />
+<p style="font-size:16px;color:#2B2B2B;line-height:1.75;letter-spacing:0.01em;margin:0 0 18px;text-align:justify;"><span style="font-size:16px;color:#2B2B2B;line-height:1.75;letter-spacing:0.01em;margin:0 0 18px;text-align:justify;">最后一段收尾。</span></p>
+</section></div>
+<script>
+var src = "<section style=\"max-width:677px;width:100%;margin:0 auto;padding:2px 0;font-size:16px;line-height:1.75;letter-spacing:0.01em;color:#2B2B2B;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue',sans-serif;background-color:#FFFFFF;text-align:left;\">\n<h1 style=\"font-size:22px;font-weight:700;color:#1A1A1A;line-height:1.45;margin:34px 0 16px;letter-spacing:0.02em;text-align:center;\"><span style=\"font-size:22px;font-weight:700;color:#1A1A1A;line-height:1.45;margin:34px 0 16px;letter-spacing:0.02em;text-align:center;\">测试标题：本地排版三段闭环</span></h1>\n<p style=\"font-size:16px;color:#2B2B2B;line-height:1.75;letter-spacing:0.01em;margin:0 0 18px;text-align:justify;\"><span style=\"font-size:16px;color:#2B2B2B;line-height:1.75;letter-spacing:0.01em;margin:0 0 18px;text-align:justify;\">这是第一段正文，含 <span style=\"font-weight:700;color:#1A1A1A;\">加粗</span> 与 <span style=\"font-style:italic;color:#1F8A5C;\">斜体</span> 与 <code style=\"font-family:'SFMono-Regular',Menlo,Consolas,monospace;font-size:14px;padding:1px 5px;border-radius:3px;background-color:#F0F3F1;color:#B5543A;\"><span style=\"font-family:'SFMono-Regular',Menlo,Consolas,monospace;font-size:14px;padding:1px 5px;border-radius:3px;background-color:#F0F3F1;color:#B5543A;\">inline_code</span></code> 三种行内标记。</span></p>\n<h2 style=\"font-size:19px;font-weight:700;color:#1F8A5C;line-height:1.5;margin:32px 0 14px;letter-spacing:0.02em;竖条用左侧 border-left:4px solid #1F8A5C;padding-left:12px;\"><span style=\"font-size:19px;font-weight:700;color:#1F8A5C;line-height:1.5;margin:32px 0 14px;letter-spacing:0.02em;竖条用左侧 border-left:4px solid #1F8A5C;padding-left:12px;\">一、绿色竖条 H2</span></h2>\n<p style=\"font-size:16px;color:#2B2B2B;line-height:1.75;letter-spacing:0.01em;margin:0 0 18px;text-align:justify;\"><span style=\"font-size:16px;color:#2B2B2B;line-height:1.75;letter-spacing:0.01em;margin:0 0 18px;text-align:justify;\">这一段用来确认竖条渲染正确。</span></p>\n<h3 style=\"font-size:16px;font-weight:700;color:#1A1A1A;line-height:1.55;margin:26px 0 10px;letter-spacing:0.01em;左侧 3px 竖条：border-left:3px solid #D9E5DF;padding-left:10px;\"><span style=\"font-size:16px;font-weight:700;color:#1A1A1A;line-height:1.55;margin:26px 0 10px;letter-spacing:0.01em;左侧 3px 竖条：border-left:3px solid #D9E5DF;padding-left:10px;\">三级标题</span></h3>\n<p style=\"font-size:16px;color:#2B2B2B;line-height:1.75;letter-spacing:0.01em;margin:0 0 18px;text-align:justify;\"><span style=\"font-size:16px;color:#2B2B2B;line-height:1.75;letter-spacing:0.01em;margin:0 0 18px;text-align:justify;\">正文段落，中文弯引号测试&quot;直引号&quot;与&#x27;单引号&#x27;。</span></p>\n<ul style=\"margin:14px 0 18px;padding-left:22px;list-style-type:disc;\"><li style=\"font-size:16px;color:#2B2B2B;line-height:1.75;margin:0 0 8px;text-align:justify;\"><span style=\"font-size:16px;color:#2B2B2B;line-height:1.75;margin:0 0 8px;text-align:justify;\">列表项一</span></li><li style=\"font-size:16px;color:#2B2B2B;line-height:1.75;margin:0 0 8px;text-align:justify;\"><span style=\"font-size:16px;color:#2B2B2B;line-height:1.75;margin:0 0 8px;text-align:justify;\">列表项二</span></li></ul>\n<ol style=\"margin:14px 0 18px;padding-left:24px;list-style-type:decimal;\"><li style=\"font-size:16px;color:#2B2B2B;line-height:1.75;margin:0 0 8px;text-align:justify;\"><span style=\"font-size:16px;color:#2B2B2B;line-height:1.75;margin:0 0 8px;text-align:justify;\">有序项一</span></li><li style=\"font-size:16px;color:#2B2B2B;line-height:1.75;margin:0 0 8px;text-align:justify;\"><span style=\"font-size:16px;color:#2B2B2B;line-height:1.75;margin:0 0 8px;text-align:justify;\">有序项二</span></li></ol>\n<blockquote style=\"font-size:15px;color:#5A5A5A;line-height:1.72;margin:20px 0;padding:12px 14px;background-color:#F5F8F6;border-radius:4px;border-left:4px solid #1F8A5C;\"><span style=\"font-size:15px;color:#5A5A5A;line-height:1.72;margin:20px 0;padding:12px 14px;background-color:#F5F8F6;border-radius:4px;border-left:4px solid #1F8A5C;\">引用块测试，用来放别人的话或结论。</span></blockquote>\n<pre style=\"margin:20px 0;padding:14px 16px;background-color:#1E1E1E;border-radius:6px;overflow-x:auto;font-family:'SFMono-Regular',Menlo,Consolas,monospace;font-size:13px;line-height:1.65;color:#E6E6E6;text-align:left;\"><code style=\"display:inline-block;min-width:100%;white-space:pre;word-break:break-all;\"><span style=\"display:inline-block;min-width:100%;white-space:pre;word-break:break-all;\">cd ~/Documents/AI项目/wechat-style-extractor-py\npython3 wechat_render.py 输入.md --preview</span></code></pre>\n<img src=\"https://example.com/a.png\" alt=\"测试图\" style=\"display:block;width:100%;height:auto;margin:18px auto;border-radius:4px;\" />\n<p style=\"font-size:13px;color:#8A8A8A;line-height:1.6;margin:-8px 0 20px;text-align:center;\"><span style=\"font-size:13px;color:#8A8A8A;line-height:1.6;margin:-8px 0 20px;text-align:center;\">测试图</span></p>\n<hr style=\"border:none;border-top:1px solid #E4E8E6;margin:30px 0;\" />\n<p style=\"font-size:16px;color:#2B2B2B;line-height:1.75;letter-spacing:0.01em;margin:0 0 18px;text-align:justify;\"><span style=\"font-size:16px;color:#2B2B2B;line-height:1.75;letter-spacing:0.01em;margin:0 0 18px;text-align:justify;\">最后一段收尾。</span></p>\n</section>";
+document.getElementById('srcBtn').onclick = function () {
+  var p = document.getElementById('paper');
+  p.innerHTML = '<pre style="white-space:pre-wrap;font-size:12px;">' + src + '</pre>';
+};
+document.getElementById('copyBtn').onclick = function () {
+  var btn = this, old = '复制到公众号';
+  var done = function (ok) {
+    btn.textContent = ok ? '已复制，去粘贴' : '复制失败，请手动选中';
+    setTimeout(function () { btn.textContent = old; }, 2000);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(src).then(function () { done(true); },
+                                          function () { done(false); });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = src; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    var ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta); done(ok);
+  }
+};
+</script>
+</body>
+</html>

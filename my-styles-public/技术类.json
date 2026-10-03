@@ -1,0 +1,41 @@
+{
+  "sourceUrl": "",
+  "title": "",
+  "author": "",
+  "tokens": [
+    {
+      "label": "正文字号",
+      "value": "15px"
+    },
+    {
+      "label": "段落间距",
+      "value": "24.0px"
+    }
+  ],
+  "components": [
+    {
+      "label": "章节标题",
+      "detail": "1处 · 保留原样式"
+    },
+    {
+      "label": "引用/重点提示",
+      "detail": "3处"
+    },
+    {
+      "label": "内容卡片",
+      "detail": "1处 · 背景与留白"
+    },
+    {
+      "label": "文章图片",
+      "detail": "10张 · 已适配宽度"
+    }
+  ],
+  "baseStyle": {
+    "color": "#3F3F3F",
+    "fontSize": "15px",
+    "lineHeight": "1.75",
+    "letterSpacing": "0.034em"
+  },
+  "_desensitized": true,
+  "_desensitizedAt": "2026-10-04"
+}

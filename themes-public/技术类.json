@@ -1,0 +1,89 @@
+{
+  "_readme": "由参考文章的排版参数自动生成，色值已做过白底对比度校验。本文件已去除原文标题、公众号名与文章链接，不含任何身份信息。",
+  "_accent": "#1F8A5C",
+  "_originalColors": {
+    "accentRaw": "#1F8A5C",
+    "bodyRaw": "#3F3F3F",
+    "panelRaw": "",
+    "note": "下面是提取时套用前的原色，改坏了可以照着还原"
+  },
+  "container": {
+    "tag": "section",
+    "style": "max-width:677px;width:100%;margin:0 auto;padding:2px 0;font-size:15px;line-height:1.75;letter-spacing:0.034em;color:#3F3F3F;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue',sans-serif;background-color:#FFFFFF;text-align:left;"
+  },
+  "h1": {
+    "tag": "h1",
+    "style": "font-size:22px;font-weight:700;color:#1A1A1A;line-height:1.45;margin:34px 0 16px;letter-spacing:0.02em;text-align:center;",
+    "wrapSpan": false
+  },
+  "h2": {
+    "tag": "h2",
+    "style": "font-size:19px;font-weight:700;color:#1F8A5C;line-height:1.5;margin:32px 0 14px;letter-spacing:0.02em;",
+    "decoration": "border-left:4px solid #1F8A5C;padding-left:12px;"
+  },
+  "h3": {
+    "tag": "h3",
+    "style": "font-size:16px;font-weight:700;color:#1A1A1A;line-height:1.55;margin:26px 0 10px;letter-spacing:0.01em;",
+    "decoration": "border-left:3px solid #1F8A5C40;padding-left:10px;"
+  },
+  "p": {
+    "tag": "p",
+    "style": "font-size:15px;color:#3F3F3F;line-height:1.75;letter-spacing:0.034em;margin:0 0 18px;text-align:justify;"
+  },
+  "callout": {
+    "tag": "blockquote",
+    "style": "font-size:15px;color:#3F3F3F;line-height:1.75;margin:20px 0;padding:12px 14px;background-color:#F5F5F5;border-radius:4px;border-left:4px solid #1F8A5C;"
+  },
+  "codeblock": {
+    "tag": "pre",
+    "style": "margin:20px 0;padding:14px 16px;background-color:#1E1E1E;border-radius:6px;overflow-x:auto;font-family:'SFMono-Regular',Menlo,Consolas,monospace;font-size:13px;line-height:1.65;color:#E6E6E6;text-align:left;",
+    "innerStyle": "display:inline-block;min-width:100%;white-space:pre;word-break:break-all;"
+  },
+  "inlinecode": {
+    "tag": "code",
+    "style": "font-family:'SFMono-Regular',Menlo,Consolas,monospace;font-size:14px;padding:1px 5px;border-radius:3px;background-color:#F5F5F5;color:#1F8A5C;"
+  },
+  "li": {
+    "tag": "li",
+    "style": "font-size:15px;color:#3F3F3F;line-height:1.75;margin:0 0 8px;text-align:justify;"
+  },
+  "ul": {
+    "tag": "ul",
+    "style": "margin:14px 0 18px;padding-left:22px;list-style-type:disc;"
+  },
+  "ol": {
+    "tag": "ol",
+    "style": "margin:14px 0 18px;padding-left:24px;list-style-type:decimal;"
+  },
+  "hr": {
+    "tag": "hr",
+    "style": "border:none;border-top:1px solid #1F8A5C33;margin:30px 0;"
+  },
+  "image": {
+    "tag": "img",
+    "style": "display:block;width:100%;height:auto;margin:18px auto;border-radius:4px;"
+  },
+  "caption": {
+    "tag": "p",
+    "style": "font-size:13px;color:#8A8A8A;line-height:1.6;margin:-8px 0 20px;text-align:center;"
+  },
+  "strong": {
+    "tag": "span",
+    "style": "font-weight:700;color:#1A1A1A;"
+  },
+  "em": {
+    "tag": "span",
+    "style": "font-style:italic;color:#1F8A5C;"
+  },
+  "link": {
+    "tag": "span",
+    "style": "color:#1F8A5C;text-decoration:underline;"
+  },
+  "signoff": {
+    "tag": "p",
+    "style": "font-size:14px;color:#8A8A8A;line-height:1.7;margin:28px 0 8px;padding-top:16px;border-top:1px solid #E4E8E6;text-align:center;"
+  },
+  "_name": "技术类",
+  "_desensitized": true,
+  "_desensitizedAt": "2026-10-04"
+}

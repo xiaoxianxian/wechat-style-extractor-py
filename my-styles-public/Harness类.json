@@ -1,0 +1,56 @@
+{
+  "sourceUrl": "",
+  "title": "",
+  "author": "",
+  "tokens": [
+    {
+      "label": "强调色",
+      "value": "#C678DD",
+      "swatch": "#C678DD"
+    },
+    {
+      "label": "正文色",
+      "value": "#ABB2BF",
+      "swatch": "#ABB2BF"
+    },
+    {
+      "label": "卡片底色",
+      "value": "#282C34",
+      "swatch": "#282C34"
+    },
+    {
+      "label": "正文字号",
+      "value": "16px"
+    },
+    {
+      "label": "正文行高",
+      "value": "1.75×"
+    }
+  ],
+  "components": [
+    {
+      "label": "章节标题",
+      "detail": "16处 · 保留原样式"
+    },
+    {
+      "label": "引用/重点提示",
+      "detail": "3处"
+    },
+    {
+      "label": "内容卡片",
+      "detail": "1处 · 背景与留白"
+    },
+    {
+      "label": "文章图片",
+      "detail": "17张 · 已适配宽度"
+    }
+  ],
+  "baseStyle": {
+    "color": "#ABB2BF",
+    "fontSize": "16px",
+    "lineHeight": "1.75",
+    "letterSpacing": "0em"
+  },
+  "_desensitized": true,
+  "_desensitizedAt": "2026-10-04"
+}
