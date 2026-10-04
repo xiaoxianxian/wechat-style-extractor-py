@@ -3,19 +3,19 @@
 把「从别人的公众号文章提取出来的参数」升格成「可渲染的主题」。
 
 用法:
-  python3 style_to_theme.py my-styles/Harness类.json
-  python3 style_to_theme.py my-styles/Harness类.json -o themes/harness.json
+  python3 style_to_theme.py my-styles/参考一.json
+  python3 style_to_theme.py my-styles/参考一.json -o themes/theme-a.json
   python3 style_to_theme.py my-styles/*.json --out-dir themes/     # 批量
 
 为什么需要这一步
 ────────────────
-wechat_style_extractor.py 抓的是「别人文章的排版 DNA」——强调色、正文色、
+gzh_extract.py 抓的是「别人文章的排版 DNA」——强调色、正文色、
 字号行高、用了哪些组件。但这些是**观察结果**，不是**渲染配置**。
 直接拿去渲染你自己的文章会翻车：别人的正文色可能是浅灰（他底是黑的），
 你的文章底是白的，套上去就是一片糊。
 
 所以这里做一次「可读性转换」：提取到的色值不是照搬，而是先在白底上验证对比度，
-不够就往深色推，推到能读为止。这样别人的版式才是可用的，不是眼.tar.gz
+不够就往深色推，推到能读为止。这样别人的版式才是真能用的，而不是原样照搬的标本。
 
 输出的主题与 components/local-theme.json 同构，渲染器可以直接吃。
 """
@@ -29,7 +29,7 @@ import sys
 from datetime import datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-FALLBACK_ACCENT = "#1F8A5C"   # 老板自有版式的绿，提取不到强调色时兜底
+FALLBACK_ACCENT = "#1F8A5C"   # 默认主题的绿，提取不到强调色时兜底
 BODY_FALLBACK = "#2B2B2B"
 WHITE = "#FFFFFF"
 
@@ -209,7 +209,7 @@ def build_theme(style: dict, name: str = "") -> dict:
 
 
 def theme_name(style: dict, path: str) -> str:
-    """用 my-styles 里的文件名当主题名（那是 owner 自己起的，短且好敲）。"""
+    """用 my-styles 里的文件名当主题名（短，好敲，且不重复）。"""
     return os.path.splitext(os.path.basename(path))[0]
 
 

@@ -39,8 +39,8 @@ python3 gzh.py list
 # 2. 排一篇文章（默认用自带版式：绿竖条 + 677px 白底 + 深色代码块）
 python3 gzh.py build 文章.md --title "文章标题"
 
-# 3. 换个风格：从一篇参考文章学来的主题
-python3 gzh.py build 文章.md --title "文章标题" --theme Harness类
+# 3. 换个风格：用从参考文章学来的主题（--theme 后面是主题文件名，不带 .json）
+python3 gzh.py build 文章.md --title "文章标题" --theme 参考一
 
 # 4. 全链路：抓参考文章 → 学它的排版 → 用它的风格排我这篇
 python3 gzh.py pipeline "https://mp.weixin.qq.com/s/xxx" 我的文章.md
@@ -187,7 +187,10 @@ LICENSE 与出处声明**。查过一轮：用四组代码特征（`wechat_style
 | `themes-public/`、`my-styles-public/` | 同一批参数去掉身份信息后的版本，色值与排版参数不变 | 进公开树 |
 
 `desensitize.py` 做的就是这个：`python3 gzh.py public` 重新生成并顺手体检一遍。
-以后自己加新主题，跑一下就有可公开的版本，不用手改。
+只有登记在 `PUBLIC_NAMES` 里的主题才会被拷进公开目录，所以新加的主题想公开，
+往那张表里加一行（`自己的名字: 自己的名字`）再跑一次就行 ——
+顺带也让「内部存档被 `gzh.py public` 顺手推上去」变成不可能：
+没登记的会被 `[skip]` 掉，`--check` 还会把已经混进公开目录的文件名报出来。
 
 ### 脱敏怎么做的
 

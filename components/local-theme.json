@@ -1,99 +1,81 @@
 {
-  "_readme": "本地公众号版式组件库（老板自有版式：绿色竖条 H2 + 677px 白底 + 深色代码块）。组件样式全部内联，不依赖 <style>/class/id。禁止出现微信会过滤的属性，见 validate_gzh_html.py。",
+  "_readme": "本地公众号版式组件库（默认版式：绿色竖条 H2 + 677px 白底 + 深色代码块）。组件样式全部内联，不依赖 <style>/class/id。禁止出现微信会过滤的属性，见 validate_gzh_html.py。",
   "_accent": "#1F8A5C",
   "_built": "2026-10-04",
-  "_source": "老板 2026-09 拍板的统一模板，非抄袭外部项目；任何风格调整改这里，不要改渲染器。",
-
+  "_source": "项目自有版式，2026-09 定为统一模板，非抄袭外部项目；任何风格调整改这里，不要改渲染器。",
   "container": {
     "tag": "section",
     "style": "max-width:677px;width:100%;margin:0 auto;padding:2px 0;font-size:16px;line-height:1.75;letter-spacing:0.01em;color:#2B2B2B;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue',sans-serif;background-color:#FFFFFF;text-align:left;"
   },
-
   "h1": {
     "tag": "h1",
     "style": "font-size:22px;font-weight:700;color:#1A1A1A;line-height:1.45;margin:34px 0 16px;letter-spacing:0.02em;text-align:center;",
     "wrapSpan": false
   },
-
   "h2": {
     "tag": "h2",
     "style": "font-size:19px;font-weight:700;color:#1F8A5C;line-height:1.5;margin:32px 0 14px;letter-spacing:0.02em;",
     "decoration": "竖条用左侧 border-left:4px solid #1F8A5C;padding-left:12px;",
     "note": "绿色竖条是这个版式的识别点，border 必须写在这里，不在 .md 或正文里手写。"
   },
-
   "h3": {
     "tag": "h3",
     "style": "font-size:16px;font-weight:700;color:#1A1A1A;line-height:1.55;margin:26px 0 10px;letter-spacing:0.01em;",
     "decoration": "左侧 3px 竖条：border-left:3px solid #D9E5DF;padding-left:10px;"
   },
-
   "p": {
     "tag": "p",
     "style": "font-size:16px;color:#2B2B2B;line-height:1.75;letter-spacing:0.01em;margin:0 0 18px;text-align:justify;"
   },
-
   "blockquote": {
     "tag": "blockquote",
     "style": "font-size:15px;color:#5A5A5A;line-height:1.72;margin:20px 0;padding:12px 14px;background-color:#F5F8F6;border-radius:4px;border-left:4px solid #1F8A5C;"
   },
-
   "codeblock": {
     "tag": "pre",
     "style": "margin:20px 0;padding:14px 16px;background-color:#1E1E1E;border-radius:6px;overflow-x:auto;font-family:'SFMono-Regular',Menlo,Consolas,monospace;font-size:13px;line-height:1.65;color:#E6E6E6;text-align:left;",
     "innerStyle": "display:inline-block;min-width:100%;white-space:pre;word-break:break-all;"
   },
-
   "inlinecode": {
     "tag": "code",
     "style": "font-family:'SFMono-Regular',Menlo,Consolas,monospace;font-size:14px;padding:1px 5px;border-radius:3px;background-color:#F0F3F1;color:#B5543A;"
   },
-
   "li": {
     "tag": "li",
     "style": "font-size:16px;color:#2B2B2B;line-height:1.75;margin:0 0 8px;text-align:justify;"
   },
-
   "ul": {
     "tag": "ul",
     "style": "margin:14px 0 18px;padding-left:22px;list-style-type:disc;"
   },
-
   "ol": {
     "tag": "ol",
     "style": "margin:14px 0 18px;padding-left:24px;list-style-type:decimal;"
   },
-
   "hr": {
     "tag": "hr",
     "style": "border:none;border-top:1px solid #E4E8E6;margin:30px 0;"
   },
-
   "image": {
     "tag": "img",
     "style": "display:block;width:100%;height:auto;margin:18px auto;border-radius:4px;"
   },
-
   "caption": {
     "tag": "p",
     "style": "font-size:13px;color:#8A8A8A;line-height:1.6;margin:-8px 0 20px;text-align:center;"
   },
-
   "strong": {
     "tag": "span",
     "style": "font-weight:700;color:#1A1A1A;"
   },
-
   "em": {
     "tag": "span",
     "style": "font-style:italic;color:#1F8A5C;"
   },
-
   "link": {
     "tag": "span",
     "style": "color:#1F8A5C;text-decoration:underline;"
   },
-
   "signoff": {
     "tag": "p",
     "style": "font-size:14px;color:#8A8A8A;line-height:1.7;margin:28px 0 8px;padding-top:16px;border-top:1px solid #E4E8E6;text-align:center;"

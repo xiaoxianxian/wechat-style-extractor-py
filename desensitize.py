@@ -16,9 +16,17 @@ desensitize.py —— 生成「可公开」的脱敏版本，与「带原文」�
 * 删：原文标题、公众号名、文章链接
 * 留：全部色值、字号、行高、段距、组件计数 —— 这些是观察结果，
       能反推排版，但不指向任何一篇文章
-* 留：主题短名（owner 自己起的 `_name`，不含原文信息）
+* 留：主题短名（但走 `PUBLIC_NAMES` 换名，见下）
 * 留：`_originalColors`，改坏了能照原色还原
 * 打标记：`_desensitized: true`
+* 换名：公开版的文件名与 `_name` 一律走 `PUBLIC_NAMES` 映射。
+
+换名是为了对外可读：内部文件名是「按参考文章讲什么」起的，那个分类逻辑
+（哪些属于同一篇、哪些该归一类）本身不适合摊到公开仓库里。
+
+`PUBLIC_NAMES` 还是一道闸门 —— **只有登记过的名字才会进公开树**。以后新提一个主题，
+不往表里加一行，跑 `gzh.py public` 时会被跳过（提示 skip），
+不会顺手把内部档案推上去。想公开就显式登记。
 
 用法
 ────
@@ -59,6 +67,21 @@ DESENSITIZE_README = ("由参考文章的排版参数自动生成，色值已做
 ORIGIN_NOTE = "下面是提取时套用前的原色，改坏了可以照着还原"
 TRUSTED_TEXT = frozenset({DESENSITIZE_README, ORIGIN_NOTE})
 
+# 公开版命名（内部名 -> 公开名），同时适用于 themes/ 与 my-styles/ 两个源目录。
+#
+# 这张表同时管两件事：
+#   1) 白名单 —— 只有登记过的主题才会被拷进公开树。新提的主题不登记就被 [skip] 掉，
+#      免得内部存档被 `gzh.py public` 顺手推上去；`--check` 也会把不在表里的
+#      文件名报成「不该出现在公开树」。
+#   2) 换名   —— 想让某个主题对外叫别的名字，只改右边那一项即可，
+#      例如 "我的内部名": "参考二"。没登记的既不公开、也换不了名。
+# 内部文件名现在都是中性分类名，所以这里是一张恒等登记表。
+PUBLIC_NAMES = {
+    "参考一": "参考一",
+    "技术类": "技术类",
+    "部署类": "部署类",
+}
+
 
 # ────────────────────────────────────────────────────────────────
 def scrub(obj, path: str = ""):
@@ -81,15 +104,19 @@ def scrub(obj, path: str = ""):
     return obj
 
 
-def build_public_style(style: dict) -> dict:
+def build_public_style(style: dict, public_name: str = "") -> dict:
     public = scrub(style)
+    if public_name and "_name" in public:
+        public["_name"] = public_name       # 参数存档本身没有 _name，别凭空加
     public["_desensitized"] = True
     public["_desensitizedAt"] = datetime.now().strftime("%Y-%m-%d")
     return public
 
 
-def build_public_theme(theme: dict) -> dict:
+def build_public_theme(theme: dict, public_name: str = "") -> dict:
     public = scrub(theme)
+    if public_name:
+        public["_name"] = public_name
     public["_readme"] = DESENSITIZE_README
     public["_desensitized"] = True
     public["_desensitizedAt"] = datetime.now().strftime("%Y-%m-%d")
@@ -107,14 +134,21 @@ def generate() -> int:
             print(f"[skip] 源目录不存在：{src}")
             continue
         os.makedirs(dst_dir, exist_ok=True)
+        for stale in glob.glob(os.path.join(dst_dir, "*.json")):
+            os.remove(stale)                  # 全量重生成，先清掉上一次的产物
         for path in sorted(glob.glob(os.path.join(src, "*.json"))):
+            stem = os.path.splitext(os.path.basename(path))[0]
+            public_name = PUBLIC_NAMES.get(stem)
+            if public_name is None:
+                print(f"[skip] {stem} 没登记到 PUBLIC_NAMES，不进公开树")
+                continue
             with open(path, encoding="utf-8") as fh:
                 raw = json.load(fh)
-            out = os.path.join(dst_dir, os.path.basename(path))
+            out = os.path.join(dst_dir, f"{public_name}.json")
             with open(out, "w", encoding="utf-8") as fh:
-                json.dump(builder(raw), fh, ensure_ascii=False, indent=2)
-            print(f"[public] {os.path.basename(path)} -> {out}")
+                json.dump(builder(raw, public_name), fh, ensure_ascii=False, indent=2)
             made += 1
+            print(f"[public] {stem} -> {public_name}.json")
     print(f"\n共 {made} 个文件。公开前跑一次 --check 体检。")
     return 0
 
@@ -147,12 +181,16 @@ def find_leaks(obj, trail: str = "") -> list[str]:
 def check() -> int:
     total = 0
     bad = 0
+    unregistered: list[str] = []
     for dst_dir in (STYLE_PUB, THEME_PUB):
         if not os.path.isdir(dst_dir):
             print(f"[skip] 还没生成：{dst_dir}（先跑一次不带 --check 的）")
             continue
         for path in sorted(glob.glob(os.path.join(dst_dir, "*.json"))):
             total += 1
+            stem = os.path.splitext(os.path.basename(path))[0]
+            if stem not in PUBLIC_NAMES.values():
+                unregistered.append(os.path.basename(path))
             with open(path, encoding="utf-8") as fh:
                 leaks = find_leaks(json.load(fh))
             if leaks:
@@ -165,6 +203,12 @@ def check() -> int:
         return 1
     if bad:
         print(f"\n✗ {bad}/{total} 个文件仍带身份信息，先回到内部版本删干净再重新生成。")
+        return 1
+    if unregistered:
+        print(f"\n✗ 这几个文件不在 PUBLIC_NAMES 里，是内部名，不该出现在公开树：")
+        for one in unregistered:
+            print(f"        {one}")
+        print("        重跑一次不带 --check 的生成命令即可清掉。")
         return 1
     print(f"✓ {total} 个公开文件无身份残留（无原文标题 / 无公众号名 / 无文章链接）。")
     return 0

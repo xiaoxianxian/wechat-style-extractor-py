@@ -30,7 +30,7 @@ DEFAULT_THEME = os.path.join(HERE, "components", "local-theme.json")
 
 # ─── 主题 ────────────────────────────────────────────────────────
 def resolve_theme(name: str = "") -> str:
-    """空 = 老板自有版式；否则先找 themes/<name>.json，再当路径。"""
+    """空 = 默认主题（components/local-theme.json）；否则先找 themes/<name>.json，再当路径。"""
     if not name:
         return DEFAULT_THEME
     if os.path.isfile(name):

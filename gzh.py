@@ -36,10 +36,12 @@ VALIDATE = os.path.join(HERE, "validate_gzh_html.py")
 
 
 def run(args: list[str], desc: str = "") -> bool:
-    print(f"── {desc or ' '.join(args[:2])}")
+    # flush=True：重定向到管道时 print 是块缓冲的，不 flush 会让这一行
+    # 排到子进程输出后面（体检时看着像「结果先出、标题后出」）
+    print(f"── {desc or ' '.join(args[:2])}", flush=True)
     r = subprocess.run([sys.executable] + args, cwd=HERE)
     if r.returncode != 0:
-        print(f"   ✗ 失败：{' '.join(args[:2])}")
+        print(f"   ✗ 失败：{' '.join(args[:2])}", flush=True)
     return r.returncode == 0
 
 
@@ -115,9 +117,14 @@ def cmd_pipeline(args) -> int:
 
 def cmd_render(args) -> int:
     out = args.out
-    r = run([os.path.join(HERE, "wechat_render.py"), args.md, "--preview",
-             "--title", args.title or os.path.splitext(os.path.basename(args.md))[0]]
-            + (["-o", out] if out else []), "渲染")
+    name = args.title or os.path.splitext(os.path.basename(args.md))[0]
+    cmd = [os.path.join(HERE, "wechat_render.py"), args.md, "--preview",
+           "--title", name]
+    if getattr(args, "theme", ""):
+        cmd += ["--theme", args.theme]          # 漏了这句，--theme 会被静默吃掉走默认版式
+    if out:
+        cmd += ["-o", out]
+    r = run(cmd, "渲染")
     if not r:
         return 1
     html = out or os.path.splitext(args.md)[0] + ".html"
@@ -134,7 +141,7 @@ def cmd_list(_) -> int:
     from wechat_render import list_themes
     themes = list_themes()
     print("可用主题（--theme 取值）：")
-    print("  (默认)  local-theme.json   老板自有版式：绿竖条 + 677px 白底 + 深色代码块")
+    print("  (默认)  local-theme.json   绿竖条 + 677px 白底 + 深色代码块")
     for t in themes:
         p = os.path.join(HERE, "themes", t + ".json")
         try:
