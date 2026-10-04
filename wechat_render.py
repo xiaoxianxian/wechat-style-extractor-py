@@ -29,23 +29,34 @@ DEFAULT_THEME = os.path.join(HERE, "components", "local-theme.json")
 
 
 # ─── 主题 ────────────────────────────────────────────────────────
+def theme_dirs() -> list[str]:
+    """主题搜索目录，按优先级：内部 themes/（带原文身份，.gitignore 排除）→ 公开 themes-public/。
+
+    两个都要扫——themes/ 不进公开树，只认它的话，clone 下来的人 --theme 任何主题都会
+    「找不到主题」然后 build 直接失败。
+    """
+    return [os.path.join(HERE, "themes"), os.path.join(HERE, "themes-public")]
+
+
 def resolve_theme(name: str = "") -> str:
-    """空 = 默认主题（components/local-theme.json）；否则先找 themes/<name>.json，再当路径。"""
+    """空 = 默认主题（components/local-theme.json）；否则先当路径，再按目录顺序找。"""
     if not name:
         return DEFAULT_THEME
     if os.path.isfile(name):
         return name
-    p = os.path.join(HERE, "themes", name if name.endswith(".json") else name + ".json")
-    if os.path.isfile(p):
-        return p
+    for d in theme_dirs():
+        p = os.path.join(d, name if name.endswith(".json") else name + ".json")
+        if os.path.isfile(p):
+            return p
     raise SystemExit(f"找不到主题：{name}\n已可用的主题：{', '.join(list_themes()) or '（空）'}")
 
 
 def list_themes() -> list[str]:
-    d = os.path.join(HERE, "themes")
-    if not os.path.isdir(d):
-        return []
-    return sorted(f[:-5] for f in os.listdir(d) if f.endswith(".json"))
+    names: set[str] = set()
+    for d in theme_dirs():
+        if os.path.isdir(d):
+            names |= {f[:-5] for f in os.listdir(d) if f.endswith(".json")}
+    return sorted(names)
 
 
 def load_theme(path: str = DEFAULT_THEME) -> dict:

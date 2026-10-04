@@ -138,18 +138,19 @@ def cmd_validate(args) -> int:
 
 
 def cmd_list(_) -> int:
-    from wechat_render import list_themes
-    themes = list_themes()
+    import wechat_render
+    themes = wechat_render.list_themes()
     print("可用主题（--theme 取值）：")
     print("  (默认)  local-theme.json   绿竖条 + 677px 白底 + 深色代码块")
     for t in themes:
-        p = os.path.join(HERE, "themes", t + ".json")
+        p = wechat_render.resolve_theme(t)   # 内部 themes/ 或公开 themes-public/ 都认
         try:
             with open(p, encoding="utf-8") as f:
                 d = json.load(f)
             accent = d.get("_accent", "")
             from_t = (d.get("_from", {}) or {}).get("title", "")
-            print(f"  {t:<20} accent={accent}   学自：{from_t[:28]}")
+            src = f"   学自：{from_t[:28]}" if from_t else "   脱敏公开版（无原文来源）"
+            print(f"  {t:<20} accent={accent}{src}")
         except Exception as e:
             print(f"  {t:<20} (读取失败：{e})")
     return 0
